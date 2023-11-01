@@ -1,5 +1,5 @@
 FROM maven:3.9.5 AS builder
-WORKDIR /app
+WORKDIR /build
 COPY pom.xml .
 COPY src src
 RUN mvn package -Dmaven.test.skip=true && \
@@ -9,6 +9,6 @@ RUN mvn package -Dmaven.test.skip=true && \
     
 FROM openjdk:17-jdk-alpine
 WORKDIR /app
-COPY --from=builder /app/target/myapp.jar myapp.jar
+COPY --from=builder /build/target/myapp.jar myapp.jar
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "myapp.jar"]
