@@ -4,7 +4,7 @@ COPY pom.xml .
 COPY src src
 RUN mvn package -Dmaven.test.skip=true && \
     ARTIFACTID=$(grep artifactId target/maven-archiver/pom.properties | awk -F'=' '{print $2}') && \
-	  VERSION=$(grep version target/maven-archiver/pom.properties | awk -F'=' '{print $2}' && \
+    VERSION=$(grep version target/maven-archiver/pom.properties | awk -F'=' '{print $2}') && \
     mv target/$ARTIFACTID-$VERSION.jar target/myapp.jar
     
 FROM openjdk:17-jdk-alpine
