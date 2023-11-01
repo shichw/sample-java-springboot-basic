@@ -11,4 +11,4 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 COPY --from=builder /app/target/myapp.jar myapp.jar
 EXPOSE 8080
-ENTRYPOINT ['java', '-jar', 'myapp.jar']
+ENTRYPOINT ["java", "-jar", "myapp.jar"]
